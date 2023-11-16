@@ -7,9 +7,16 @@
     </div>
   </div>
 
-  <div class="ion-text-center ion-padding"> 
+  <!-- <div class="ion-text-center ion-padding"> 
      <img *ngIf="selfieImageSrc" [src]="selfieImageSrc" alt="Selfie">
+  </div> -->
+  <br>
+  <div *ngIf="capturedPhoto">
+    <img [src]="capturedPhoto.webPath" alt="Foto capturada">
+    <br>
+    <ion-button (click)="borrarFoto()">Eliminar Foto</ion-button>
   </div>
+  <br>
 
   <div *ngIf="loggedInUser" class="ion-text-start">
     <ion-text class="usuario">Hola, {{ loggedInUser.name }} {{ loggedInUser.lname }}</ion-text>
@@ -18,6 +25,7 @@
       <ion-text class="rut_usuario">------------------------</ion-text>
     </div>
   </div>
+  <br>
 
   <div class="ion-text-start" *ngIf="qrData">
     <ion-text class="usuario">Profesor: {{ qrData.profesor }}</ion-text><br>
@@ -28,6 +36,10 @@
     <ion-text class="coordenadas">Coordenadas:</ion-text><br>
     <ion-text class="coordenadas">Latitud: {{ latitud }}</ion-text><br>
     <ion-text class="coordenadas">Longitud: {{ longitud }} </ion-text>
+  </div>
+  <br>
+  <div >
+    <ion-button class="button-primary" (click)="tomarFoto()">Tomar Selfie</ion-button>
   </div>
 
   <div class="div_volver">

@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage-angular';
 import { LocationService } from '../services/location.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 
 declare global {
   interface HTMLCanvasElement {
@@ -28,6 +29,9 @@ export class AsistenciaPage implements OnInit {
   longitud: number = 0;
 
   qrData: any;
+
+  capturedPhoto?: Photo ;
+
 
   constructor(private authService: AuthService, 
     private router: Router, 
@@ -73,12 +77,12 @@ export class AsistenciaPage implements OnInit {
   selfieImageSrc: string | null = null;
 
   ionViewDidEnter() {
-    this.tomarSelfie();
+  //  this.tomarSelfie();
     this.obtenerUbicacion();
   }
 
 
-  async tomarSelfie() {
+/*  async tomarSelfie() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       const video = document.createElement('video');
@@ -102,5 +106,20 @@ export class AsistenciaPage implements OnInit {
     } catch (error) {
       console.error('Error al tomar la selfie');
     }
+  }*/
+
+  async tomarFoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+    });
+    this.capturedPhoto = image;
   }
+
+  borrarFoto() {
+    this.capturedPhoto = undefined; // Borra la foto asignándole un valor undefined
+  }
+  
 }
