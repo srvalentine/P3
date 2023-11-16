@@ -13,6 +13,7 @@
   <br>
   <div *ngIf="capturedPhoto">
     <img [src]="capturedPhoto.webPath" alt="Foto capturada">
+    <br>
     <ion-button (click)="borrarFoto()">Eliminar Foto</ion-button>
   </div>
   <br>
@@ -36,9 +37,9 @@
     <ion-text class="coordenadas">Latitud: {{ latitud }}</ion-text><br>
     <ion-text class="coordenadas">Longitud: {{ longitud }} </ion-text>
   </div>
-
-  <div class="div_volver">
-    <ion-button class="button-danger" (click)="tomarFoto()">Tomar Selfie</ion-button>
+  <br>
+  <div >
+    <ion-button class="button-primary" (click)="tomarFoto()">Tomar Selfie</ion-button>
   </div>
 
   <div class="div_volver">
